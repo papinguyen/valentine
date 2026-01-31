@@ -15,9 +15,9 @@ const CONFIG = {
     // Find more emojis at: https://emojipedia.org
     floatingImages: {
       pokemon: [
-        "images/azumarill.png",
-        "images/azurill.png",
-        "images/marill.png"
+        "azumarill.png",
+        "azurill.png",
+        "marill.png"
       ]
     },
 
