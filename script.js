@@ -82,6 +82,20 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Setup music player
     setupMusicPlayer();
+
+    // Make the "No" buttons run away
+    const no1 = document.getElementById('noBtn1');
+    const no3 = document.getElementById('noBtn3');
+
+    [no1, no3].forEach(btn => {
+          if (!btn) return;
+
+          btn.addEventListener('mouseenter', () => moveButton(btn)); // run away on hover
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveButton(btn); // backup if somehow clicked
+      });
+    });
 });
 
 // Create floating azurill, marill, azumarill
@@ -99,7 +113,7 @@ function createFloatingElements() {
   // Keep spawning new ones over time
   setInterval(() => {
     spawnFloatingPokemon(container, images);
-  }, 600); // every 1.2 seconds
+  }, 600); // every 600 miliseconds
 }
 
 function spawnFloatingPokemon(container, images) {
@@ -133,11 +147,17 @@ function showNextQuestion(questionNumber) {
 
 // Function to move the "No" button when clicked
 function moveButton(button) {
-    const x = Math.random() * (window.innerWidth - button.offsetWidth);
-    const y = Math.random() * (window.innerHeight - button.offsetHeight);
-    button.style.position = 'fixed';
-    button.style.left = x + 'px';
-    button.style.top = y + 'px';
+  const padding = 20;
+
+  const maxX = window.innerWidth - button.offsetWidth - padding;
+  const maxY = window.innerHeight - button.offsetHeight - padding;
+
+  const x = Math.max(padding, Math.floor(Math.random() * maxX));
+  const y = Math.max(padding, Math.floor(Math.random() * maxY));
+
+  button.style.position = 'fixed';
+  button.style.left = x + 'px';
+  button.style.top = y + 'px';
 }
 
 // Love meter functionality
