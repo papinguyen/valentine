@@ -14,11 +14,7 @@ const CONFIG = {
     // Floating emojis that appear in the background
     // Find more emojis at: https://emojipedia.org
     floatingImages: {
-      pokemon: [
-        "azumarill.png",
-        "azurill.png",
-        "marill.png"
-      ]
+      pokemon: ["azumarill.png", "azurill.png", "marill.png"]
     },
 
     // Questions and answers
