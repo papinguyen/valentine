@@ -48,9 +48,8 @@ const CONFIG = {
 
     // Messages that appear after they say "Yes!"
     celebration: {
-       celebration: {
-            title: "Yay! I'm the luckiest person in the world! 🎉💝💖💝💓",
-            gif: "togepipikachuhug.gif"
+        title: "Yay! I'm the luckiest person in the world! 🎉💝💖💝💓",
+         gif: "togepipikachuhug.gif"
     },
  
     // Color scheme for the website
