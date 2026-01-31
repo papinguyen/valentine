@@ -84,20 +84,38 @@ window.addEventListener('DOMContentLoaded', () => {
     setupMusicPlayer();
 });
 
-// Create floating hearts and bears
+// Create floating azurill, marill, azumarill
 function createFloatingElements() {
   const container = document.querySelector('.floating-elements');
+  const images = config.floatingImages?.pokemon || [];
 
-  // Create floating images (Pokemon)
-  (config.floatingImages?.pokemon || []).forEach(src => {
-    const img = document.createElement('img');
-    img.className = 'floating-image';
-    img.src = src;              // because your png files are in the repo root
-    img.alt = 'floating';
+  if (!images.length) return;
 
-    setRandomPosition(img);
-    container.appendChild(img);
-  });
+  // Create MANY floating Pokémon
+  for (let i = 0; i < 40; i++) {
+    spawnFloatingPokemon(container, images);
+  }
+
+  // Keep spawning new ones over time
+  setInterval(() => {
+    spawnFloatingPokemon(container, images);
+  }, 600); // every 1.2 seconds
+}
+
+function spawnFloatingPokemon(container, images) {
+  const img = document.createElement('img');
+  img.className = 'floating-image';
+
+  const src = images[Math.floor(Math.random() * images.length)];
+  img.src = src;
+
+  setRandomPosition(img);
+  container.appendChild(img);
+
+  // Remove after animation to avoid memory buildup
+  setTimeout(() => {
+    img.remove();
+  }, 20000);
 }
 
 // Set random position for floating elements
