@@ -206,21 +206,26 @@ window.addEventListener('load', setInitialPosition);
 
 // Celebration function
 function celebrate() {
-    document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
-    const celebration = document.getElementById('celebration');
-    celebration.classList.remove('hidden');
-    
-    // Set celebration messages
-    document.getElementById('celebrationTitle').textContent = config.celebration.title;
+  document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
 
-    // Show GIF instead of message + emojis
-    document.getElementById('celebrationMessage').innerHTML = `
-      <img 
-        src="${config.celebration.gif}" 
-        alt="Hug GIF"
-        style="max-width: 100%; max-height: 60vh; border-radius: 20px;"
+  const celebration = document.getElementById('celebration');
+  if (celebration) celebration.classList.remove('hidden');
+
+  // Title (keep)
+  const titleEl = document.getElementById('celebrationTitle');
+  if (titleEl) titleEl.textContent = config.celebration.title;
+
+  // Put GIF inside celebrationMessage (use existing element)
+  const msgEl = document.getElementById('celebrationMessage');
+  if (msgEl) {
+    msgEl.innerHTML = `
+      <img
+        src="${config.celebration.gif}"
+        alt="Celebration"
+        style="max-width:100%; max-height:60vh; border-radius:20px;"
       />
     `;
+  }
 
 // Hide the emojis element (optional)
 const emojisEl = document.getElementById('celebrationEmojis');
