@@ -86,25 +86,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // Create floating hearts and bears
 function createFloatingElements() {
-    const container = document.querySelector('.floating-elements');
-    
-    // Create hearts
-    config.floatingEmojis.hearts.forEach(heart => {
-        const div = document.createElement('div');
-        div.className = 'heart';
-        div.innerHTML = heart;
-        setRandomPosition(div);
-        container.appendChild(div);
-    });
+  const container = document.querySelector('.floating-elements');
 
-    // Create bears
-    config.floatingEmojis.bears.forEach(bear => {
-        const div = document.createElement('div');
-        div.className = 'bear';
-        div.innerHTML = bear;
-        setRandomPosition(div);
-        container.appendChild(div);
-    });
+  // Create floating images (Pokemon)
+  (config.floatingImages?.pokemon || []).forEach(src => {
+    const img = document.createElement('img');
+    img.className = 'floating-image';
+    img.src = src;              // because your png files are in the repo root
+    img.alt = 'floating';
+
+    setRandomPosition(img);
+    container.appendChild(img);
+  });
 }
 
 // Set random position for floating elements
