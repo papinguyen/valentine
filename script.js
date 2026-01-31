@@ -212,8 +212,19 @@ function celebrate() {
     
     // Set celebration messages
     document.getElementById('celebrationTitle').textContent = config.celebration.title;
-    document.getElementById('celebrationMessage').textContent = config.celebration.message;
-    document.getElementById('celebrationEmojis').textContent = config.celebration.emojis;
+
+    // Show GIF instead of message + emojis
+    document.getElementById('celebrationMessage').innerHTML = `
+      <img 
+        src="${config.celebration.gif}" 
+        alt="Hug GIF"
+        style="max-width: 100%; max-height: 60vh; border-radius: 20px;"
+      />
+    `;
+
+// Hide the emojis element (optional)
+const emojisEl = document.getElementById('celebrationEmojis');
+if (emojisEl) emojisEl.classList.add('hidden');
     
     // Create heart explosion effect
     createHeartExplosion();
