@@ -106,14 +106,14 @@ function createFloatingElements() {
   if (!images.length) return;
 
   // Create MANY floating Pokémon
-  for (let i = 0; i < 40; i++) {
+  for (let i = 0; i < 20; i++) {
     spawnFloatingPokemon(container, images);
   }
 
   // Keep spawning new ones over time
   setInterval(() => {
     spawnFloatingPokemon(container, images);
-  }, 600); // every 600 miliseconds
+  }, 1200); // every 1200 miliseconds
 }
 
 function spawnFloatingPokemon(container, images) {
