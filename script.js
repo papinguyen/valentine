@@ -83,6 +83,14 @@ window.addEventListener('DOMContentLoaded', () => {
     // Setup music player
     setupMusicPlayer();
 
+    // Start music automatically on first "Yes" click
+    const yes1 = document.getElementById('yesBtn1');
+    if (yes1) {
+        yes1.addEventListener('click', () => {
+            forceStartMusic();
+        });
+    }
+
     // Make the "No" buttons run away
     const no1 = document.getElementById('noBtn1');
     const no3 = document.getElementById('noBtn3');
@@ -287,3 +295,19 @@ function setupMusicPlayer() {
         }
     });
 } 
+
+// Force start music
+function forceStartMusic() {
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+
+    if (!bgMusic) return;
+
+    bgMusic.play().then(() => {
+        if (musicToggle) {
+            musicToggle.textContent = config.music.stopText;
+        }
+    }).catch(() => {
+        // Autoplay still blocked — user can click Play Music
+    });
+}
