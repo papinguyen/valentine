@@ -121,6 +121,15 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Secret button is the real way to go to Question 2
+const secretBtn = document.getElementById('secretAnswerBtn');
+if (secretBtn) {
+    secretBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showNextQuestion(2);
+    });
+}
+
 // Create floating azurill, marill, azumarill
 function createFloatingElements() {
   const container = document.querySelector('.floating-elements');
