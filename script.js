@@ -82,12 +82,27 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Setup music player
     setupMusicPlayer();
-
-    // Start music automatically on first "Yes" click
+    // YES button logic: first click starts music, then YES runs away
+    let yesClickedOnce = false;
+    
     const yes1 = document.getElementById('yesBtn1');
     if (yes1) {
-        yes1.addEventListener('click', () => {
-            forceStartMusic();
+        yes1.addEventListener('click', (e) => {
+            e.preventDefault();
+    
+            // FIRST click: start music + change text
+            if (!yesClickedOnce) {
+                forceStartMusic(); // 🎵 START MUSIC HERE
+                yesClickedOnce = true;
+    
+                yes1.textContent = "Are you sure you ONLY 'like' me?";
+    
+                // After first click, YES starts escaping
+                yes1.addEventListener('mouseenter', () => moveButton(yes1));
+            }
+    
+            // Always move YES away
+            moveButton(yes1);
         });
     }
 
